@@ -1,0 +1,4 @@
+services:
+  noscopealert-rabbitmq:
+    container_name: noscopealert-rabbitmq
+    image: noscopealert-rabbitmq
