@@ -3,3 +3,7 @@ services:
     container_name: noscopealert-rabbitmq
     image: noscopealert-rabbitmq
     hostname: noscopealert-rabbitmq
+  noscopealert-updategamecodes:
+    container_name: noscopealert-updategamecodes
+    image: noscopealert-updategamecodes
+    hostname: noscopealert-updategamecodes
