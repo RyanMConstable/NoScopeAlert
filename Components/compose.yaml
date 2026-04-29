@@ -3,6 +3,8 @@ services:
     container_name: noscopealert-rabbitmq
     image: noscopealert-rabbitmq
     hostname: noscopealert-rabbitmq
+    ports:
+      - "5672:5672"
   noscopealert-updategamecodes:
     container_name: noscopealert-updategamecodes
     image: noscopealert-updategamecodes
