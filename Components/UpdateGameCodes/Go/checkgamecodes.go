@@ -39,9 +39,10 @@ func CheckGameCodes(u Users) error {
 				return err
 			}
 
-			fmt.Println(data.Result.Nextcode)
-
 			//Here we need to send the nextcode IF it does not equal n/a to rabbitmq queue
+			if data.Result.Nextcode != "n/a" {
+				fmt.Println("NEW CODE")
+			}
 		}
 		time.Sleep(2 * time.Second)
 	}
