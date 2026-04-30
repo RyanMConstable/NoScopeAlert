@@ -6,7 +6,9 @@ services:
     ports:
       - "5672:5672"
     restart: always
+    build: ./RabbitMQ
   noscopealert-updategamecodes:
     container_name: noscopealert-updategamecodes
     image: noscopealert-updategamecodes
     hostname: noscopealert-updategamecodes
+    build: ./UpdateGameCodes
