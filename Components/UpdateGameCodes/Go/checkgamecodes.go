@@ -1,11 +1,18 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"time"
 )
+
+type Response struct {
+	Result struct {
+		Nextcode string `json:"nextcode"`
+	} `json:"result"`
+}
 
 func CheckGameCodes(u Users) error {
 	//Here we must check forever the status of the games of users.
@@ -22,8 +29,17 @@ func CheckGameCodes(u Users) error {
 			defer resp.Body.Close()
 
 			body, err := io.ReadAll(resp.Body)
-			fmt.Println(string(body))
+			if err != nil {
+				return err
+			}
 
+			var data Response
+			err = json.Unmarshal(body, &data)
+			if err != nil {
+				return err
+			}
+
+			fmt.Println(data.Result.Nextcode)
 		}
 		time.Sleep(2 * time.Second)
 	}
