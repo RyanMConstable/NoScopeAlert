@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 )
 
 func main() {
@@ -18,8 +19,9 @@ func main() {
 	//If a game has been played, then we must send that code and the steamid to a rabbitmq queue
 	err := CheckGameCodes(users)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
+
 }
 
 type Users struct {

@@ -5,6 +5,7 @@ services:
     hostname: noscopealert-rabbitmq
     ports:
       - "5672:5672"
+    restart: always
   noscopealert-updategamecodes:
     container_name: noscopealert-updategamecodes
     image: noscopealert-updategamecodes
