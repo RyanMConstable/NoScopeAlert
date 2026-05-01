@@ -14,7 +14,7 @@ type Response struct {
 	} `json:"result"`
 }
 
-func CheckGameCodes(u Users) error {
+func CheckGameCodes(u *Users) error {
 	//Here we must check forever the status of the games of users.
 	//Asynchronous will most likely be the best way to do this.
 	for {
@@ -43,7 +43,11 @@ func CheckGameCodes(u Users) error {
 			if data.Result.Nextcode != "n/a" {
 				fmt.Println("A new code has been found: ", data.Result.Nextcode)
 
+				//This sends the info to the rabbitmq queue to download the game
 				SendToQueue(data.Result.Nextcode, user.steamid)
+
+				//TMP We need to update the game code in the struct so that it keeps updating to new codes
+				u.users[0].knowncode = data.Result.Nextcode
 			}
 		}
 		time.Sleep(2 * time.Second)

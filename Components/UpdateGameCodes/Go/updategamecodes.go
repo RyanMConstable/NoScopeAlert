@@ -18,7 +18,7 @@ func main() {
 	//Here we must constantly check every user to see if a new game has been played.
 	//If a game has been played, then we must send that code and the steamid to a rabbitmq queue
 	fmt.Println("Checking players for new games played")
-	err := CheckGameCodes(users)
+	err := CheckGameCodes(&users)
 	if err != nil {
 		log.Fatal(err)
 	}
