@@ -12,11 +12,12 @@ func main() {
 	//In the future this will be a database grab, and then the loop will sit in memory for ever.
 	//Adding new users must be instant and will have to be thought about as well
 	//For now this is just my user for testing (not included in git so people don't steal my keys)
+	fmt.Println("Initializing users")
 	InitUsers(&users)
-	fmt.Println(users)
 
 	//Here we must constantly check every user to see if a new game has been played.
 	//If a game has been played, then we must send that code and the steamid to a rabbitmq queue
+	fmt.Println("Checking players for new games played")
 	err := CheckGameCodes(users)
 	if err != nil {
 		log.Fatal(err)

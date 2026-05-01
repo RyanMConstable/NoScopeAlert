@@ -8,8 +8,17 @@ services:
       - "15672:15672"
     restart: always
     build: ./RabbitMQ
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   noscopealert-updategamecodes:
     container_name: noscopealert-updategamecodes
     image: noscopealert-updategamecodes
     hostname: noscopealert-updategamecodes
     build: ./UpdateGameCodes
+    depends_on: 
+      noscopealert-rabbitmq:
+        condition: service_healthy

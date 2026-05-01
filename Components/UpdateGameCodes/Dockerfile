@@ -2,7 +2,7 @@ FROM golang:1.26.2-alpine3.23
 
 WORKDIR /usr/src/app
 
-COPY Go/go.mod ./
+COPY Go/go.mod Go/go.sum ./
 RUN go mod download
 
 COPY Go/. .
