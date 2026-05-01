@@ -6,6 +6,6 @@ COPY Go/go.mod Go/go.sum ./
 RUN go mod download
 
 COPY Go/. .
-RUN go build -v -o /usr/local/bin/app ./...
+RUN go build -v -o /usr/local/bin/downloadmatches ./...
 
 CMD ["downloadmatches"]

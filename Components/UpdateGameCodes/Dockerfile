@@ -1,11 +1,11 @@
 FROM golang:1.26.2-alpine3.23
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/updategamecodes
 
 COPY Go/go.mod Go/go.sum ./
 RUN go mod download
 
 COPY Go/. .
-RUN go build -v -o /usr/local/bin/app ./...
+RUN go build -v -o /usr/local/bin/updategamecodes ./...
 
-CMD ["app"]
+CMD ["updategamecodes"]
