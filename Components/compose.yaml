@@ -8,6 +8,8 @@ services:
       - "15672:15672"
     restart: always
     build: ./RabbitMQ
+    volumes:
+      - "./RabbitMQ/data:/var/lib/rabbitmq"
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "ping"]
       interval: 10s
@@ -22,3 +24,5 @@ services:
     depends_on: 
       noscopealert-rabbitmq:
         condition: service_healthy
+
+
