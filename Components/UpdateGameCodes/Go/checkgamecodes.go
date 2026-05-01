@@ -19,7 +19,7 @@ func CheckGameCodes(u *Users) error {
 	//Asynchronous will most likely be the best way to do this.
 	for {
 		//Loop through users
-		for _, user := range u.users {
+		for i, user := range u.users {
 			gameCodeURL := fmt.Sprintf("https://api.steampowered.com/ICSGOPlayers_730/GetNextMatchSharingCode/v1?key=%v&steamid=%v&steamidkey=%v&knowncode=%v", user.key, user.steamid, user.steamidkey, user.knowncode)
 
 			resp, err := http.Get(gameCodeURL)
@@ -47,7 +47,7 @@ func CheckGameCodes(u *Users) error {
 				SendToQueue(data.Result.Nextcode, user.steamid)
 
 				//TMP We need to update the game code in the struct so that it keeps updating to new codes
-				u.users[0].knowncode = data.Result.Nextcode
+				u.users[i].knowncode = data.Result.Nextcode
 			}
 		}
 		time.Sleep(2 * time.Second)
