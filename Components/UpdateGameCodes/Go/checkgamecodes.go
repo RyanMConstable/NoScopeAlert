@@ -44,9 +44,10 @@ func CheckGameCodes(u *Users) error {
 				fmt.Println("A new code has been found: ", data.Result.Nextcode)
 
 				//This sends the info to the rabbitmq queue to download the game
+				//NEED: Check the mongodb to see if the game exists already, if so skip this
 				SendToQueue(data.Result.Nextcode, user.steamid)
 
-				//TMP We need to update the game code in the struct so that it keeps updating to new codes
+				//TMP We need to update the game code in the struct/db so that it keeps updating to new codes we cannot have stale data
 				u.users[i].knowncode = data.Result.Nextcode
 			}
 		}
